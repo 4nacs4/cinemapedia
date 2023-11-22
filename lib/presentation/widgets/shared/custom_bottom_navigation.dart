@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class CustomBottomNavigation extends StatelessWidget {
   const CustomBottomNavigation({super.key});
 
+  final int pageIndex;
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(elevation: 0, items: const [
