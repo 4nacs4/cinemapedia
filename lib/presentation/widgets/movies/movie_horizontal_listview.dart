@@ -34,7 +34,6 @@ class _MovieHorizontalListViewState extends State<MovieHorizontalListView> {
       if (scrollController.position.pixels + 200 >=
           scrollController.position.maxScrollExtent) {
         // loading = true;
-        print('Load next movies');
         widget.loadNextPage!();
       }
     });
@@ -114,33 +113,23 @@ class _Slide extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          //* Imagen
           SizedBox(
             width: 150,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                movie.posterPath,
-                fit: BoxFit.cover,
-                width: 150,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress != null) {
-                    return const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                        ),
-                      ),
-                    );
-                  }
-                  return GestureDetector(
-                    onTap: () => context.push('/movie/${movie.id}'),
-                    child: FadeInRight(child: child),
-                  );
-                },
+              child: GestureDetector(
+                onTap: () => context.push('/home/0/movie/${movie.id}'),
+                child: FadeInImage(
+                    height: 220,
+                    fit: BoxFit.cover,
+                    placeholder:
+                        const AssetImage('assets/loaders/bottle-loader.gif'),
+                    image: NetworkImage(movie.posterPath)),
               ),
             ),
           ),
+
           const SizedBox(height: 5),
 
           //*Title
